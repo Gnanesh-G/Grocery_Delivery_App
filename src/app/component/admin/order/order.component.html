@@ -1,0 +1,52 @@
+<div>
+  <table class="container-fluid table caption-top">
+    <caption class="text-black fs-1">
+      WELCOME TO ADMIN'S ORDER PAGE
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Id</th>
+        <th scope="col" class="text-center">User Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Current Status</th>
+        <th scope="col">Edit Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <th scope="row" class="text-center">{{ order.id }}</th>
+        <td class="text-center">{{ order.userId }}</td>
+        <td>{{ order.username }}</td>
+        <td>{{ order.orderStatus }}</td>
+
+        <td>
+          <div class="dropdown">
+            <button
+              class="btn btn-success dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Status
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="/grocery">Pending</a>
+              </li>
+              <li><a class="dropdown-item" routerLink="/cart">Shipped</a></li>
+              <li>
+                <a class="dropdown-item" routerLink="/order"
+                  >Out for Delivery</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/order">Delivered</a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

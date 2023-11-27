@@ -1,0 +1,129 @@
+<div>
+  <div class="row d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mt-5 col-10 text-black">Grocery List:</h2>
+    <button
+      type="button"
+      class="mt-4 col-auto btn btn-info"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo"
+    >
+      Add a Grocery
+    </button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let grocery of groceries">
+        <th scope="row">{{ grocery.id }}</th>
+        <td>{{ grocery.image }}</td>
+        <td>{{ grocery.title }}</td>
+        <td>{{ grocery.description }}</td>
+        <td>{{ grocery.price }}</td>
+        <td>
+          <button
+            class="btn btn-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+            (click)="onEdit(grocery.id!)"
+          >
+            Edit</button
+          ><button class="btn btn-danger me-2" (click)="onDelete(grocery.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Grocery</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+          <div class="mb-3">
+            <label for="item-title" class="col-form-label">Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="item-title"
+              name="title"
+              [(ngModel)]="title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="item-description" class="col-form-label"
+              >Description:</label
+            >
+            <textarea
+              class="form-control"
+              id="item-description"
+              name="description"
+              [(ngModel)]="description"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="item-price" class="col-form-label">Price:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="item-price"
+              name="price"
+              [(ngModel)]="price"
+            />
+            <!-- You can choose the appropriate input type for the price (text, number, etc.) -->
+          </div>
+          <div class="mb-3">
+            <label for="image-upload" class="col-form-label">Image:</label>
+            <input
+              type="file"
+              class="form-control"
+              id="image-upload"
+              accept="image/*"
+            />
+            <!-- You can use the 'accept' attribute to specify that only image files are allowed -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="onSubmit(productForm)"
+        >
+          {{ btn }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

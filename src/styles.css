@@ -1,1 +1,227 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+
+:root {
+  --primary-50: #f7fee7; /* White */
+  --primary-100: #f1f1f1; /* Lighter Shade of White */
+  --primary-300: #c0c0c0; /* Light Gray */
+  --primary-500: #388e3c; /* Slightly Thicker Green */
+  --primary-600: #2e7d32; /* Darker Green */
+  --primary-700: #1b5e20; /* Even Darker Green */
+  --primary-900: #124116; /* Darkest Green */
+  --secondary-100: #f9fbe7; /* Off-White/Greenish */
+  --secondary-500: #757575; /* Gray */
+  --secondary-900: #212121; /* Dark Gray */
+  --red-100: #ffcdd2; /* Light Red */
+  --red-300: #e57373; /* Red */
+  --red-500: #f44336; /* Dark Red */
+  --red-700: #d32f2f; /* Darker Red */
+  --green-light: #c8e6c9; /* New Light Green */
+  --green-500: #388e3c; /* Slightly Thicker Green */
+  --green-medium: #7cb342; /* Medium Green */
+  --green-dark: #1b5e20; /* Dark Green */
+  --border-radius: 4px;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  background-color: var(--primary-50);
+}
+
+/* text */
+.text-primary {
+  color: var(--primary-500) !important;
+}
+
+/* background */
+.bg-primary {
+  background-color: var(--primary-600) !important;
+}
+
+/* button */
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--secondary-100);
+  background: var(--primary-500);
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--primary-600) !important;
+  border: none;
+}
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--green-700);
+  border: none;
+}
+
+/* form */
+.form-control,
+.form-control:focus {
+  color: var(--primary-500);
+  background-color: var(--bs-body-bg);
+  border-color: var(--primary-500);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--primary-300);
+}
+
+.form-label {
+  color: var(--primary-500);
+}
+
+.border {
+  border-right-color: var(--primary-300) !important;
+}
+
+/* background color */
+.bg-body-tertiary {
+  background-color: var(--primary-100) !important;
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 2px 6px;
+  display: block;
+  color: var(--red-700);
+  border-radius: var(--border-radius);
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > a:active {
+  color: var(--primary-500);
+  background-color: var(--primary-50) !important;
+  padding: 8px;
+}
+
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--primary-500);
+  padding: 8px;
+}
+
+.sideBarItem > a:hover {
+  color: var(--primary-500);
+}
+
+.sideBarActive > .fa-solid {
+  color: var(--primary-500);
+}
+
+.sideBarItem:hover {
+  color: var(--primary-500);
+  background-color: var(--primary-50);
+  padding: 8px;
+}
+
+/* Icon */
+.fa-solid {
+  color: var(--primary-300);
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+/* Auth css */
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+/* order */
+.gradient-custom {
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  }
+  
+  .card-custom {
+  border-bottom-left-radius: 10% 50%;
+  border-top-left-radius: 10% 50%;
+  background-color: #f8f9fa ;
+  }
+  
+  
+  .input-custom {
+  background-color: white ;
+  }
+  
+  .white-text {
+  color: hsl(52, 0%, 98%);
+  font-weight: 100 ;
+  font-size: 14px;
+  }
+  
+  .back-button {
+  background-color: hsl(52, 0%, 98%);
+  font-weight: 700;
+  color: black ;
+  margin-top: 50px ;
+  }
+/* navbar */
+  .bg-palestine-green {
+    background-color: rgb(72, 178, 96); /* Change this color code to the desired "palestine green" shade */
+  }
+  /* Define any additional styles for navbar text color, etc. */
+.navbar-nav .nav-link {
+  color: white; /* Change text color to contrast with the green background */
+}
+
+
+

@@ -1,0 +1,8 @@
+.hover-zoom:hover{
+    background-size: 200px;
+    cursor: pointer;
+    width: 310px;
+    height: 200px;
+    position: relative;
+    transition-duration: 2s;
+  }
