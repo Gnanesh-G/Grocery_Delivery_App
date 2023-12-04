@@ -8,12 +8,10 @@ import { Grocery } from 'src/app/model/grocery';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit{
-  error: string = "";
-  groceries:Grocery[]=[];
-  constructor(private groceryService: GroceryService) {
-    
-  }
+export class HomeComponent implements OnInit {
+  error: string = '';
+  groceries: Grocery[] = [];
+  constructor(private groceryService: GroceryService) {}
   ngOnInit(): void {
     this.groceryService.getAllGroceries().subscribe({
       next: (response: any) => {
@@ -21,9 +19,8 @@ export class HomeComponent implements OnInit{
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
-        this.error = message.includes(",") ? message.split(",")[0] : message;
+        this.error = message.includes(',') ? message.split(',')[0] : message;
       },
     });
   }
-  
 }

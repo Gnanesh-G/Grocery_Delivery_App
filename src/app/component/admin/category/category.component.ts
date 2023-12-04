@@ -34,7 +34,7 @@ export class AdminCategoryComponent implements OnInit {
 
   onSubmit(form: any) {
     if (this.editId == 0) {
-      //console.log('adddddd');
+      //console.log('add');
 
       this.categoryService.postCategory({ title: this.title }).subscribe({
         next: (response: any) => {
@@ -47,13 +47,14 @@ export class AdminCategoryComponent implements OnInit {
         },
       });
     } else {
-      //console.log('edittttt');
+      //console.log('edit');
 
       let newCategory = { id: this.id, title: this.title };
       this.categoryService.putCategory(newCategory).subscribe({
         next: (response: any) => {
           this.categories = response.data;
           this.title = '';
+          this.btn = 'Add';
         },
         error: (err) => {
           let message: string = err?.error?.error?.message;

@@ -4,5 +4,5 @@
     width: 310px;
     height: 200px;
     position: relative;
-    transition-duration: 2s;
+    transition-duration: .5s;
   }

@@ -17,10 +17,11 @@ import { AuthInterceptorService } from './service/interceptor/authInterceptor.se
 import { GroceriesComponent } from './component/groceries/groceries.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderComponent } from './component/order/order.component';
-import {AdminCategoryComponent } from './component/admin/category/category.component';
+import { AdminCategoryComponent } from './component/admin/category/category.component';
 import { AdminGroceryComponent } from './component/admin/grocery/grocery.component';
 import { AdminUserComponent } from './component/admin/user/user.component';
 import { AdminorderComponent } from './component/admin/order/order.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 export function playerFactory() {
   return player;
@@ -40,8 +41,7 @@ export function playerFactory() {
     AdminUserComponent,
     AdminorderComponent,
     AdminCategoryComponent,
-  
-    
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

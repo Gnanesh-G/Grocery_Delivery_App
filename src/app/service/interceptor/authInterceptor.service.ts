@@ -14,8 +14,10 @@ import { StorageService } from '../storage.service';
   providedIn: 'root',
 })
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private authService: AuthService,
-    private storageService:StorageService) {}
+  constructor(
+    private authService: AuthService,
+    private storageService: StorageService
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -26,11 +28,10 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     console.log(authdata);
     console.log(isApiUrl);
-    
 
     if (authdata !== null && isApiUrl) {
-      console.log("auth");
-      
+      console.log('auth');
+
       request = request.clone({
         setHeaders: {
           Authorization: `Basic ${authdata}`,

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://html.design/preview/?theme=sunshine -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Sunshine | HTML Design</title>
+    
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="./slide_files/style.css">
+
+    <!-- Used Fonts -->
+    <link href="./slide_files/css" rel="stylesheet" type="text/css">
+
+    <!-- JavaScript -->
+    <script async="" src="./slide_files/get_counts"></script><script src="./slide_files/f.txt" id="google_shimpl"></script><script type="text/javascript" async="" src="./slide_files/analytics.js.download"></script><script type="text/javascript" async="" src="./slide_files/js"></script><script async="" src="./slide_files/5a7fc9b308e4bc00136bbe96.js.download"></script><script type="text/javascript" src="./slide_files/jquery-1.9.1.min.js.download"></script>
+  <script type="text/javascript">
+    var themeListOpen = false;
+    $(document).ready(function () {
+        function adjustIframeHeight() {
+            var switcherHeight = $("#switcher").height();
+            $("#iframe").attr("height", $(window).height() - switcherHeight + "px");
+        }
+
+        var isIpad = navigator.userAgent.match(/iPad/i) != null;
+
+        $(window).resize(function () {
+            adjustIframeHeight();
+        }).resize();
+
+        $("#theme_select").click(function () {
+            if (themeListOpen === true) {
+                $(".center ul li ul").hide();
+                themeListOpen = false;
+            } else {
+                $(".center ul li ul").show();
+                themeListOpen = true;
+            }
+            return false;
+        });
+
+        $("#theme_list ul li a").click(function () {
+            var relValues = $(this).attr("rel").split(",");
+            $("li.purchase a").attr("href", relValues[1]);
+            $("li.remove_frame a").attr("href", relValues[0]);
+            $("#iframe").attr("src", relValues[0]);
+            window.location.href = "?theme=" + relValues[2];
+            $("li.close a").attr("src", relValues[0]);
+            $("#theme_list a#theme_select").text($(this).text());
+            $(".center ul li ul").hide();
+            themeListOpen = false;
+            return false;
+        });
+
+        $("#header-bar").hide();
+        var clicked = "desktop";
+        var devices = {
+            desktop: "100%",
+            tabletlandscape: 1040,
+            tabletportrait: 788,
+            mobilelandscape: 500,
+            mobileportrait: 340,
+            placebo: 0
+        };
+
+        jQuery(".responsive a").on("click", function () {
+            var clickedDevice = jQuery(this);
+            for (var device in devices) {
+                if (clickedDevice.hasClass(device)) {
+                    clicked = device;
+                    jQuery("#iframe").width(devices[device]);
+                    if (clicked === device) {
+                        jQuery(".responsive a").removeClass("active");
+                        clickedDevice.addClass("active");
+                    }
+                }
+            }
+            return false;
+        });
+
+        if (isIpad) {
+            $("#iframe").css("padding-bottom", "60px");
+        }
+    });
+</script>
+
+<meta http-equiv="origin-trial" content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/ERL66fN363FkXxgDc6F1+ucRUkAhjEca9W3la6xaLnD2Y1lABsqmdaJmPNaUKPKVBRpyMKEhXYl7rSvrQw+AkAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A6OdGH3fVf4eKRDbXb4thXA4InNqDJDRhZ8U533U/roYjp4Yau0T3YSuc63vmAs/8ga1cD0E3A7LEq6AXk1uXgsAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/ERL66fN363FkXxgDc6F1+ucRUkAhjEca9W3la6xaLnD2Y1lABsqmdaJmPNaUKPKVBRpyMKEhXYl7rSvrQw+AkAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A6OdGH3fVf4eKRDbXb4thXA4InNqDJDRhZ8U533U/roYjp4Yau0T3YSuc63vmAs/8ga1cD0E3A7LEq6AXk1uXgsAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><style type="text/css">#st-2 {
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  backface-visibility: hidden;
+  display: block;
+  position: fixed;
+  opacity: 1;
+  text-align: left;
+  top: 200px;
+  z-index: 94034;
+}
+#st-2.st-left {
+  left: 0px;
+}
+#st-2.st-hidden.st-left {
+  left: -48px;
+}
+#st-2.st-hidden {
+  width: 96px;
+}
+#st-2.st-preview {
+  display: none!important;
+  opacity: 0!important;
+}
+#st-2 > div {
+  clear: left;
+  float: left;
+}
+#st-2 .st-btn {
+  -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: NaNpx;
+  height: 48px;
+  line-height: 24px;
+  margin-bottom: 0;
+  opacity: 1;
+  overflow: hidden;
+  padding: 12px;
+  position: relative;
+  text-align: left;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 48px;
+}
+#st-2 .st-btn.st-first {
+  border-top: none;
+  border-top-right-radius: 0px;
+}
+#st-2 .st-btn.st-last {
+  border-bottom: none;
+  border-bottom-right-radius: 0px;
+}
+#st-2 .st-btn > svg {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 24px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 24px;
+}
+#st-2 .st-btn > img {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 24px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 24px;
+}
+#st-2 .st-btn > span {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  left: -35px;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+  filter: alpha(opacity=0);
+}
+#st-2 .st-btn.st-hide-label > span {
+  display: none !important;
+}
+#st-2 .st-total {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #fff;
+  color: #555;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 18px;
+  margin-right: 0;
+  min-height: 34px;
+  max-width: 80px;
+  opacity: 1;
+  padding: 4px 0;
+  text-align: center;
+  width: 48px;
+}
+#st-2 .st-total.st-hidden {
+  display: none;
+}
+#st-2 .st-total > span {
+  display: block;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 0;
+}
+#st-2 .st-total > span.st-shares {
+  font-size: 11px;
+  line-height: 11px;
+}
+#st-2 .st-toggle {
+  left: -48px;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #ccc;
+  border-bottom-right-radius: 0px;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+  width: 48px;
+}
+#st-2.st-hidden .st-toggle {
+  border-top-right-radius: 0px;
+}
+#st-2.st-left .st-toggle .st-left {
+  display: inline-block;
+}
+#st-2.st-left.st-hidden .st-toggle .st-left {
+  display: none;
+}
+#st-2.st-left .st-toggle .st-right {
+  display: none;
+}
+#st-2.st-left.st-hidden .st-toggle .st-right {
+  display: inline-block;
+}#st-2:hover .st-toggle {
+  left: 0;
+}
+#st-2.st-hidden:hover .st-toggle {
+  left: 48px;
+}
+#st-2.st-toggleable:hover .st-btn.st-last {
+  border-bottom-right-radius: 0;
+}
+#st-2.st-toggleable:hover .st-btn.st-last:hover {
+  border-bottom-right-radius: 0px;
+}
+#st-2 .st-btn:hover {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+#st-2.st-has-labels .st-btn:hover {
+  width: 120px;
+}
+#st-2:not(.st-has-labels) .st-btn:hover {
+  width: 62px;
+}
+#st-2 .st-btn.st-hide-label:hover {
+  width: 62px;
+}
+#st-2 .st-btn:hover > svg {
+  margin-left: 5px;
+}
+#st-2 .st-btn:hover > img {
+  margin-left: 5px;
+}
+#st-2 .st-btn:hover > span {
+  opacity: 1;
+  display: inline-block;
+  left: 0;
+  filter: alpha(opacity=100);
+}
+@media (max-width: 1024px) {
+  #st-2 .st-btn:hover > svg {
+    margin-left: 0;
+  }
+  #st-2 .st-btn:hover > span {
+    display: none;
+  }
+}@media (max-width: 1024px) {
+  #st-2 {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: 100%;
+}
+#st-2.st-hidden {
+  bottom: -48px;
+  width: 100%;
+}
+#st-2.st-hidden.st-left {
+  left: 0;
+}
+#st-2.st-hidden.st-right {
+  right: 0;
+}
+#st-2 > div {
+  -moz-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  clear: none;
+  flex: 1;
+  float: none;
+}
+#st-2 .st-total {
+  background: #fff;
+  padding: 6px 8px;
+}
+#st-2 .st-btn {
+  -moz-border-radius: 0 !important;
+-webkit-border-radius: 0 !important;
+border-radius: 0 !important;
+  text-align: center;
+  width: auto;
+}
+#st-2 .st-btn > span {
+  display: none;
+}
+#st-2 .st-toggle {
+  display: none;
+}body { padding-bottom: 48px; }
+}#st-2 .st-btn[data-network='facebook'] {
+  background-color: #4267B2
+}
+#st-2 .st-btn[data-network='facebook'] img {
+  filter: 
+}
+#st-2 .st-btn[data-network='facebook'] > span {
+  color: #fff
+}
+#st-2 .st-btn[data-network='twitter'] {
+  background-color: #000000
+}
+#st-2 .st-btn[data-network='twitter'] img {
+  filter: 
+}
+#st-2 .st-btn[data-network='twitter'] > span {
+  color: #fff
+}
+#st-2 .st-btn[data-network='pinterest'] {
+  background-color: #CB2027
+}
+#st-2 .st-btn[data-network='pinterest'] img {
+  filter: 
+}
+#st-2 .st-btn[data-network='pinterest'] > span {
+  color: #fff
+}
+#st-2 .st-btn[data-network='sharethis'] {
+  background-color: #95D03A
+}
+#st-2 .st-btn[data-network='sharethis'] img {
+  filter: 
+}
+#st-2 .st-btn[data-network='sharethis'] > span {
+  color: #fff
+}#st-2 .st-btn[data-network='snapchat'] > span {
+  color: #333};
+}#st-2 .st-btn[data-network='copy']:hover {
+  width: max-content;
+}</style><script async="" src="./slide_files/ca-pub-5351821530950623"></script><script async="" src="./slide_files/AGSKWxXJVYg_74mvtcOb6NcnJbEWJaM-z7c9vNm6DTEwFcCBv7RkSoi29PSvmoaPWuqCoEu9HnL2VqpUXv6a-oAdoG90MrushTgO9PcgCW6pC9XAqDMPVq6cKvIGoTQHw-ywftg1bHhxIg=="></script><script async="" src="./slide_files/AGSKWxVh18QNAYCDnQaJKUDIZNOJwA2x2J8ZOCL3rPCzWkj32WYPrtQmnMsE6kyLQzGWF8fNAwOo77yxfUx6tFT6PXfcBC9NXGglZLSkGgWrmbUCFaVCviKiij6beMLsG0x2yPEWpLdQ1g=="></script><meta http-equiv="origin-trial" content="As0hBNJ8h++fNYlkq8cTye2qDLyom8NddByiVytXGGD0YVE+2CEuTCpqXMDxdhOMILKoaiaYifwEvCRlJ/9GcQ8AAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="AgRYsXo24ypxC89CJanC+JgEmraCCBebKl8ZmG7Tj5oJNx0cmH0NtNRZs3NB5ubhpbX/bIt7l2zJOSyO64NGmwMAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3MTk1MzI3OTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/ERL66fN363FkXxgDc6F1+ucRUkAhjEca9W3la6xaLnD2Y1lABsqmdaJmPNaUKPKVBRpyMKEhXYl7rSvrQw+AkAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A6OdGH3fVf4eKRDbXb4thXA4InNqDJDRhZ8U533U/roYjp4Yau0T3YSuc63vmAs/8ga1cD0E3A7LEq6AXk1uXgsAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MTkzNTk5OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><script async="" src="./slide_files/AGSKWxUCeZmbXsAN_Vomqd7XzCBasQkyWX_fuqDnCrGPeYtAKwo-kSCTRC0yd_KiL02JxI7l50KYXwZG0kuz_QpEhqOsN20RG5SvVkC4Ec0VWod_KgXK5HggU3f7mJ65OMm0RgxsTy5Rww=="></script></head>
+<body>
+    <div id="switcher">
+        <div class="center">
+            <div class="responsive">
+                <div class="itemname">Sunshine</div>
+           		<a href="https://html.design/preview/?theme=sunshine#" class="desktop active" title="View Desktop Version"></a>
+				<a href="https://html.design/preview/?theme=sunshine#" class="tabletlandscape" title="View Tablet Landscape (1024x768)"></a>
+				<a href="https://html.design/preview/?theme=sunshine#" class="tabletportrait" title="View Tablet Portrait (768x1024)"></a>
+				<a href="https://html.design/preview/?theme=sunshine#" class="mobilelandscape" title="View Mobile Landscape (480x320)"></a>
+				<a href="https://html.design/preview/?theme=sunshine#" class="mobileportrait" title="View Mobile Portrait (320x480)"></a>
+            </div>
+            <ul class="links">
+                <li class="backtosite ads">
+			
+					<a href="https://www.elegantthemes.com/affiliates/idevaffiliate.php?id=31564_1_1_9" target="_blank" rel="nofollow"><img style="border:0px" src="./slide_files/234x60.gif" width="234" height="60" alt=""></a>
+					<a href="https://html.design/advertising" style="font-size: 10px;display: flex;">Ad Space</a>
+				</li>
+				<li class="backtosite">
+					<a value="Go Back From Where You Came" onclick="history.back(-1)"><img src="./slide_files/purchase.png" alt="Download">Go Back to Download</a>
+				</li>
+				<li class="backtosite" rel="https://html.design/demo/sunshine/">
+					<a href="https://html.design/demo/sunshine/"><img src="./slide_files/cross.png" alt="Remove"> Remove iframe</a>
+				</li>
+            </ul>
+        </div>
+    </div>
+
+    <iframe id="iframe" src="./slide_files/saved_resource.html" frameborder="0" width="100%" height="491px"></iframe>
+    <!-- Additional scripts if needed -->
+    <script type="text/javascript" src="./slide_files/sharethis.js.download"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async="" src="./slide_files/js(1)"></script>
+			<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-45529136-9');
+			</script>
+			<script async="" src="./slide_files/f(1).txt" crossorigin="anonymous" data-checked-head="true"></script>
+
+			<script async="" src="./slide_files/f(1).txt" crossorigin="anonymous" data-checked-head="true"></script>
+
+
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><div id="aswift_0_host" tabindex="0" title="Advertisement" aria-label="Advertisement" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"><iframe id="aswift_0" name="aswift_0" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting" src="./slide_files/ads.html" data-google-container-id="a!1" data-load-complete="true"></iframe></div></ins><div id="st-2" class=" st-sticky-share-buttons st-left st-toggleable st-has-labels st-show-total "><div class="st-total ">
+  <span class="st-label">3.9k</span>
+  <span class="st-shares">
+    Shares
+  </span>
+</div><div class="st-btn st-first" data-network="facebook" style="display: inline-block;">
+  <img alt="facebook sharing button" src="./slide_files/facebook.svg">
+  <span class="st-label">Share</span>
+</div><div class="st-btn" data-network="twitter" style="display: inline-block;">
+  <img alt="twitter sharing button" src="./slide_files/twitter.svg">
+  <span class="st-label">Tweet</span>
+</div><div class="st-btn" data-network="pinterest" style="display: inline-block;">
+  <img alt="pinterest sharing button" src="./slide_files/pinterest.svg">
+  <span class="st-label">Pin</span>
+</div><div class="st-btn st-last" data-network="sharethis" style="display: inline-block;">
+  <img alt="sharethis sharing button" src="./slide_files/sharethis.svg">
+  <span class="st-label">Share</span>
+</div><div class="st-toggle">
+  <div class="st-left">
+    <img alt="arrow_left sharing button" src="./slide_files/arrow_left.svg">
+  </div>
+  <div class="st-right">
+    <img alt="arrow_right sharing button" src="./slide_files/arrow_right.svg">
+  </div>
+</div></div><iframe name="googlefcPresent" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;" src="./slide_files/saved_resource(1).html"></iframe><iframe name="__tcfapiLocator" src="./slide_files/saved_resource(2).html" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcInactive" src="./slide_files/saved_resource(3).html" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe name="googlefcLoaded" src="./slide_files/saved_resource(4).html" style="display: none; width: 0px; height: 0px; border: none; z-index: -1000; left: -1000px; top: -1000px;"></iframe><iframe src="./slide_files/aframe.html" width="0" height="0" style="display: none;"></iframe></body><iframe id="google_esf" name="google_esf" src="./slide_files/zrt_lookup_fy2021.html" style="display: none;"></iframe></html>

@@ -5,10 +5,10 @@
   --primary-100: #f1f1f1; /* Lighter Shade of White */
   --primary-300: #c0c0c0; /* Light Gray */
   --primary-500: #388e3c; /* Slightly Thicker Green */
-  --primary-600: #2e7d32; /* Darker Green */
-  --primary-700: #1b5e20; /* Even Darker Green */
+  --primary-600: hsl(123, 46%, 34%); /* Darker Green */
+  --primary-700: #d0fdd3; /* Even Darker Green */
   --primary-900: #124116; /* Darkest Green */
-  --secondary-100: #f9fbe7; /* Off-White/Greenish */
+  --secondary-100: #a7b90d; /* Off-White/Greenish */
   --secondary-500: #757575; /* Gray */
   --secondary-900: #212121; /* Dark Gray */
   --red-100: #ffcdd2; /* Light Red */
@@ -24,7 +24,7 @@
 
 body {
   font-family: "Exo 2", sans-serif;
-  background-color: var(--primary-50);
+  background-color: var(--primary-700);
 }
 
 /* text */
@@ -222,6 +222,8 @@ height: 100%;
 .navbar-nav .nav-link {
   color: white; /* Change text color to contrast with the green background */
 }
+
+
 
 
 

@@ -3,7 +3,7 @@
     <h2 class="mt-5 col-10 text-black">Grocery List:</h2>
     <button
       type="button"
-      class="mt-4 col-auto btn btn-info"
+      class="mt-4 col-auto btn btn-success"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       data-bs-whatever="@mdo"
@@ -25,7 +25,17 @@
     <tbody>
       <tr *ngFor="let grocery of groceries">
         <th scope="row">{{ grocery.id }}</th>
-        <td>{{ grocery.image }}</td>
+        <td>
+          <img
+            src="{{
+              'http://localhost:8080/api/admin/grocery/downloadFile/' +
+                grocery.id
+            }}"
+            alt=""
+            width="50px"
+            height="50px"
+          />
+        </td>
         <td>{{ grocery.title }}</td>
         <td>{{ grocery.description }}</td>
         <td>{{ grocery.price }}</td>
@@ -57,7 +67,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Grocery</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add Your Grocery Details
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -66,6 +78,12 @@
         ></button>
       </div>
       <div class="modal-body">
+        <img
+          src="/assets/img/banner/slide29.jpg"
+          class="d-block w-100"
+          alt="dddd"
+          style="height: 240px; width: 500px"
+        />
         <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
           <div class="mb-3">
             <label for="item-title" class="col-form-label">Title:</label>
@@ -106,6 +124,10 @@
               class="form-control"
               id="image-upload"
               accept="image/*"
+              name="photo"
+              #modelFile="ngModel"
+              [(ngModel)]="photo"
+              (change)="onFileChange($event)"
             />
             <!-- You can use the 'accept' attribute to specify that only image files are allowed -->
           </div>

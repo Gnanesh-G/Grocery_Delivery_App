@@ -8,6 +8,7 @@
           <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Username</th>
+          <th scope="col">Role</th>
           <th scope="col">Joined Date</th>
         </tr>
       </thead>
@@ -20,6 +21,7 @@
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.name }}</td>
           <td>{{ user.username }}</td>
+          <td>{{ user.roles }}</td>
           <td>{{ user.joinedAt }}</td>
         </tr>
       </tbody>
@@ -30,7 +32,7 @@
     <div class="" *ngFor="let address of userDetail.addressList">
       <div>
         <p>Address:{{ address.address }}</p>
-        
+
         <p></p>
       </div>
       <div>
@@ -42,4 +44,3 @@
     </div>
   </div>
 </div>
-

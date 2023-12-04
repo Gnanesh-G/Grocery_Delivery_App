@@ -17,14 +17,14 @@ export class GroceryService {
     );
   }
 
-  postGroceries(grocery:Grocery): Observable<AppResponse> {
+  postGroceries(grocery: FormData): Observable<AppResponse> {
     return this.http.post<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/grocery`,
       grocery
     );
   }
 
-  putGroceries(grocery: Grocery): Observable<AppResponse> {
+  putGroceries(grocery: FormData): Observable<AppResponse> {
     return this.http.put<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/grocery`,
       grocery
@@ -36,4 +36,12 @@ export class GroceryService {
       `${urlEndpoint.baseUrl}/admin/grocery/${id}`
     );
   }
+
+  // getUserCart(id:number): Observable<AppResponse> {
+  //   return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/cart/get/${id}`);
+  // }
+
+  // removeFromCart(userId:number,id:number): Observable<AppResponse>{
+  //   return this.http.delete<AppResponse>(`${urlEndpoint.baseUrl}/cart/remove/${userId}/${id}`);
+  // }
 }

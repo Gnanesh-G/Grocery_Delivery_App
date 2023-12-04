@@ -5,7 +5,7 @@ import { urlEndpoint } from '../utils/constant';
 import { AppResponse } from '../model/appResponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   constructor(private http: HttpClient) {}

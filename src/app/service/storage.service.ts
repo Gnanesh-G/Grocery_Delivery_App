@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppUser } from '../model/appUser';
+import { Cart } from '../model/cart';
+import { Order } from '../model/order';
 
 @Injectable({
   providedIn: 'root',
@@ -19,28 +21,41 @@ export class StorageService {
     localStorage.removeItem('loggedInUser');
   }
   public setRoute(route: string | null): void {
-    if (route !== null) localStorage.setItem("route", route);
+    if (route !== null) localStorage.setItem('route', route);
   }
 
   public getRoute(): string | null {
-    return localStorage.getItem("route");
+    return localStorage.getItem('route');
   }
 
   public removeRoute(): void {
-    localStorage.removeItem("route");
+    localStorage.removeItem('route');
   }
 
   setAuthData(authData: string) {
-    localStorage.setItem("authData", authData);
-    console.log("setted");
-    
+    localStorage.setItem('authData', authData);
+    console.log('setted');
   }
 
   public getAuthData(): string | null {
-    return localStorage.getItem("authData");
+    return localStorage.getItem('authData');
   }
-  
+
   public removeAuthData(): void {
-    localStorage.removeItem("authData");
+    localStorage.removeItem('authData');
+  }
+
+  public setCart(cart: Cart): void {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+  public getCart(): Cart[] {
+    return JSON.parse(localStorage.getItem('cart') || '{}');
+  }
+  public removeCart(): void {
+    localStorage.removeItem('cart');
+  }
+
+  setOrder(order: Order[]): void {
+    localStorage.setItem('orders', JSON.stringify(order));
   }
 }

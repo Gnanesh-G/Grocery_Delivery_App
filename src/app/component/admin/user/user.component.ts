@@ -5,17 +5,17 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
 })
 export class AdminUserComponent implements OnInit {
-  error: string = "";
+  error: string = '';
   userDetails: UserDetail[] = [];
   userDetail: UserDetail = {
     id: 0,
-    username: "",
-    name: "",
-    roles: "",
-    joinedAt: "",
+    username: '',
+    name: '',
+    roles: '',
+    joinedAt: '',
     addressList: [],
   };
 
@@ -28,12 +28,12 @@ export class AdminUserComponent implements OnInit {
         if (userDetails.length > 0) {
           this.userDetails = userDetails;
           this.userDetail = userDetails[0];
-          console.log("check");
+          console.log('check');
         }
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
-        this.error = message.includes(",") ? message.split(",")[0] : message;
+        this.error = message.includes(',') ? message.split(',')[0] : message;
       },
     });
   }
@@ -41,5 +41,4 @@ export class AdminUserComponent implements OnInit {
   setSelectedUser(userDetail: UserDetail): void {
     this.userDetail = userDetail;
   }
-
 }

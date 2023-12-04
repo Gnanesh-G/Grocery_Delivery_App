@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.css'],
 })
-export class AdminorderComponent {
- 
-  error: string = "";
-  orders:Order[]=[];
-  
+export class AdminorderComponent implements OnInit {
+  error: string = '';
+  orders: Order[] = [];
+  status: number = 0;
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
@@ -21,12 +20,20 @@ export class AdminorderComponent {
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
-        this.error = message.includes(",") ? message.split(",")[0] : message;
+        this.error = message.includes(',') ? message.split(',')[0] : message;
       },
     });
-
   }
 
-
-
+  setStatus(id: number): void {
+    let statusReq = {
+      orderId: id,
+      statusId: this.status,
+    };
+    this.orderService.setStatus(statusReq).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+    });
+  }
 }

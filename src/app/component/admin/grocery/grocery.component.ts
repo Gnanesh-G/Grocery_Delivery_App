@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Grocery } from 'src/app/model/grocery';
 import { GroceryService } from 'src/app/service/grocery.service';
 
@@ -11,13 +12,14 @@ export class AdminGroceryComponent implements OnInit {
   error: string = '';
   //INITIAL_GROCERY: Grocery = { id: 0, title: "",description:"",price:0 };
   id: number = 0;
+  photo: string = '';
   title: String = '';
-  description:String = '';
+  description: String = '';
   price = 0;
   btn: string = 'Add';
   editId: number = 0;
   groceries: Grocery[] = [];
-
+  file: string = '';
   //groceryModel: Grocery = this.INITIAL_GROCERY;
   constructor(private groceryService: GroceryService) {}
 
@@ -33,47 +35,42 @@ export class AdminGroceryComponent implements OnInit {
     });
   }
 
-  onSubmit(form: any) {
+  onSubmit(productForm: NgForm) {
     if (this.editId == 0) {
-      //console.log('adddddd');
+      const formData = new FormData();
+      formData.append('photo', this.file);
+      formData.append('title', productForm.value.title);
+      formData.append('description', productForm.value.description);
+      formData.append('categoryId', '1');
+      formData.append('price', productForm.value.price.toString());
 
-      this.groceryService
-        .postGroceries({
-          title: this.title,
-          description: this.description,
-          price: this.price,
-          categoryId: 1,
-        })
-        .subscribe({
-          next: (response: any) => {
-            this.groceries = response.data;
-            this.title = '';
-            this.description='';
-            this.price=0;
-          },
-          error: (err) => {
-            let message: string = err?.error?.error?.message;
-            this.error = message.includes(',')
-              ? message.split(',')[0]
-              : message;
-          },
-        });
-    } else {
-      //console.log('edittttt');
-
-      let newCategory = {
-        id: this.id,
-        title: this.title,
-        description: this.description,
-        price: this.price,
-        categoryId:1,
-      };
-      this.groceryService.putGroceries(newCategory).subscribe({
+      this.groceryService.postGroceries(formData).subscribe({
         next: (response: any) => {
-          this.groceries = response.data;
           this.title = '';
-          this.description='';
-          this.price=0;
+          this.description = '';
+          this.price = 0;
+          this.ngOnInit();
+        },
+        error: (err) => {
+          let message: string = err?.error?.error?.message;
+          this.error = message.includes(',') ? message.split(',')[0] : message;
+        },
+      });
+    } else {
+      const formData = new FormData();
+      formData.append('photo', this.file);
+      formData.append('id', this.id.toString());
+      formData.append('title', productForm.value.title);
+      formData.append('description', productForm.value.description);
+      formData.append('categoryId', '1');
+      formData.append('price', productForm.value.price.toString());
+      this.groceryService.putGroceries(formData).subscribe({
+        next: (response: any) => {
+          this.title = '';
+          this.description = '';
+          this.price = 0;
+          this.btn = 'Add';
+          this.ngOnInit();
         },
         error: (err) => {
           let message: string = err?.error?.error?.message;
@@ -111,6 +108,13 @@ export class AdminGroceryComponent implements OnInit {
               : message;
         },
       });
+    }
+  }
+
+  onFileChange(event: any) {
+    const fileInput = event.target;
+    if (fileInput && fileInput.files.length > 0) {
+      this.file = fileInput.files[0];
     }
   }
 }

@@ -1,7 +1,7 @@
 <div>
   <table class="container-fluid table caption-top">
-    <caption class="text-black fs-1">
-      WELCOME TO ADMIN'S ORDER PAGE
+    <caption class="text-black fs-2 mb-3">
+      Order Details
     </caption>
 
     <thead>
@@ -21,32 +21,39 @@
         <td>{{ order.orderStatus }}</td>
 
         <td>
-          <div class="dropdown">
-            <button
-              class="btn btn-success dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Status
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" routerLink="/grocery">Pending</a>
-              </li>
-              <li><a class="dropdown-item" routerLink="/cart">Shipped</a></li>
-              <li>
-                <a class="dropdown-item" routerLink="/order"
-                  >Out for Delivery</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" routerLink="/order">Delivered</a>
-              </li>
-            </ul>
-          </div>
+          
+            <div class="dropdown " >
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(25, 145, 75);">
+                Set Status
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" >Pending</a></li>
+                <li><a class="dropdown-item" >Shipped</a></li>
+                <li><a class="dropdown-item" >Out For Delivery</a></li>
+                <li><a class="dropdown-item" >Delivered</a></li>
+              </ul>
+            </div>
+           
+          
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+<!-- <select
+class="form-select  mx-5 text-black" style="width: 100px; height: 30px; background-color: rgb(9, 192, 9);"
+aria-label="Default select example"
+id="categorySelector"
+ngModel
+[(ngModel)]="status"
+
+>gggg
+<option value="1">Pending</option>
+<option value="2">Shipped</option>
+<option value="3">Out For Delivery</option>
+<option value="4">Delivered</option>
+</select>
+
+<button class="btn btn-outline-dark" style="width: 80px; height: 50px;"  (click)="setStatus(order.id)" >Set Status</button> -->

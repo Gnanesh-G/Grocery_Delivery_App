@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, Observer, map } from 'rxjs';
 import { AppResponse } from '../model/appResponse';
 import { StorageService } from './storage.service';
 import { AppUser } from '../model/appUser';
+import { Register } from '../model/register';
 
 @Injectable({
   providedIn: 'root',
@@ -65,14 +66,21 @@ export class AuthService {
     this.storageService.setLoggedInUser(user);
     this.isLoggedInSubject.next(true);
 
-    let route:string | null=this.storageService.getRoute();
+    let route: string | null = this.storageService.getRoute();
     if (user.role === CONSTANT.USER) {
-      if(route===null) route="";
-      this.router.navigate(["/" + route], { replaceUrl: true });
+      if (route === null) route = '';
+      this.router.navigate(['/' + route], { replaceUrl: true });
     } else if (user.role === CONSTANT.ADMIN) {
-      if(route===null) route= "/admin";
+      if (route === null) route = '/admin';
       this.isAdminSubject.next(true);
-      this.router.navigate(["/" + route], { replaceUrl: true });
+      this.router.navigate(['/' + route], { replaceUrl: true });
     }
+  }
+
+  register(user: Register): Observable<AppResponse> {
+    return this.http.post<AppResponse>(
+      `${urlEndpoint.baseUrl}/auth/register`,
+      user
+    );
   }
 }

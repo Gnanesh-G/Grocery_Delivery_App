@@ -2,57 +2,26 @@
   <router-outlet />
 </div>
 
-<div *ngIf="isLoggedIn" class="container-fluid vh-100 d-flex flex-column">
-  <div class="row">
-    <header class="navbar sticky-top bg-primary p-3 shadow">
-      <div class="mx-3">
-        <img
-          src="//eme-3.myshopify.com/cdn/shop/files/logo_1_300x300.png?v=1662980587"
-          alt="Eme Fashion Shopify Theme - Blank Store"
-          height="50vh"
-          width="70vw"
-        />
-      </div>
-      <a class="navbar-brand px-3 text-white" routerLink="/">Home</a>
-      <div class="dropdown">
-        <button
-          class="btn btn-success dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Departments
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="/grocery">Grocery</a></li>
-          <li><a class="dropdown-item" routerLink="/cart">Shopping Cart</a></li>
-          <li><a class="dropdown-item" routerLink="/order">Order</a></li>
-        </ul>
-      </div>
-      <a class="navbar-brand px-3 text-white" routerLink="#">About</a>
-      <div class="navbar-nav px-4 text-white" (click)="logout()" role="button">
-        <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
-      </div>
-    </header>
-  </div>
-
-  <div *ngIf="isAdmin" class="row flex-grow-1">
+<div *ngIf="isLoggedIn">
+  <div class="container-fluid vh-100 d-flex flex-column">
+    <!-- 
+  <div *ngIf="!isAdmin" class="row flex-grow-1">
     <div class="sidebar border border-right col-2 p-0">
       <div class="bg-body-tertiary h-100" tabindex="-1">
         <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li
               class="nav-item d-flex align-items-center px-4 sideBarActive"
-              [routerLink]="['admin']"
+              [routerLink]="['']"
               routerLinkActive="sideBarActive"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <i class="fa-solid fa-house"></i>
-              <a class="nav-link d-flex align-items-center"> Dashboard </a>
+              <a class="nav-link d-flex align-items-center">Home</a>
             </li>
             <li
               class="nav-item d-flex align-items-center px-4 sideBarItem"
-              [routerLink]="['admin/category']"
+              
               routerLinkActive="sideBarActive"
               [routerLinkActiveOptions]="{ exact: true }"
             >
@@ -61,41 +30,231 @@
             </li>
             <li
               class="nav-item d-flex align-items-center px-4 sideBarItem"
-              [routerLink]="['admin/grocery']"
+              [routerLink]="['grocery']"
               routerLinkActive="sideBarActive"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <i class="fa-solid fa-shopping-basket"></i>
-              <a class="nav-link d-flex align-items-center">Products </a>
+              <a class="nav-link d-flex align-items-center">Products</a>
             </li>
             <li
               class="nav-item d-flex align-items-center px-4 sideBarItem"
-              [routerLink]="['admin/user']"
+              [routerLink]="['order']"
               routerLinkActive="sideBarActive"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <i class="fa-solid fa-user"></i>
-              <a class="nav-link d-flex align-items-center">Users</a>
+              <a class="nav-link d-flex align-items-center">Order</a>
             </li>
             <li
               class="nav-item d-flex align-items-center px-4 sideBarItem"
-              [routerLink]="['admin/order']"
+              [routerLink]="['userProfile']"
               routerLinkActive="sideBarActive"
               [routerLinkActiveOptions]="{ exact: true }"
             >
               <i class="fa-solid fa-clock-rotate-left"></i>
-              <a class="nav-link d-flex align-items-center">Orders </a>
+              <a class="nav-link d-flex align-items-center">User </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
+
+    
+
     <main class="col-10 px-4">
       <router-outlet></router-outlet>
     </main>
-  </div>
-  <div *ngIf="!isAdmin">
-    <router-outlet></router-outlet>
+  </div> -->
+
+    <div *ngIf="isAdmin" class="row flex-grow-1">
+      <header class="navbar sticky-top bg-primary shadow">
+        <a class="navbar-brand m-1" href="#">
+          <img
+            src="//eme-3.myshopify.com/cdn/shop/files/logo_1_300x300.png?v=1662980587"
+            alt=""
+            height="50vh"
+            width="50vw"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+
+        <a class="navbar-brand px-3 text-white" routerLink="/">Home</a>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-success dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Departments
+          </button>
+          <ul class="dropdown-menu text-white">
+            <li><a class="dropdown-item" routerLink="/grocery">Grocery</a></li>
+            <li *ngIf="!isAdmin">
+              <a class="dropdown-item" routerLink="/cart">Shopping Cart</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/order">Order</a></li>
+          </ul>
+        </div>
+        <!-- <a class="navbar-brand px-3 text-white" routerLink="#">Profile</a> -->
+        <div
+          class="navbar-nav px-4 text-white"
+          *ngIf="!isAdmin"
+          routerLink="/cart"
+          role="button"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div
+          class="navbar-nav px-4 text-white"
+          routerLink="/userProfile"
+          role="button"
+        >
+          <i class="fa fa-user text-white"></i>
+        </div>
+        <div
+          class="navbar-nav px-4 text-white"
+          (click)="logout()"
+          role="button"
+        >
+          <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
+        </div>
+      </header>
+      <div class="sidebar border border-right col-2 p-0">
+        <div class="bg-body-tertiary h-100" tabindex="-1">
+          <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
+            <ul class="nav flex-column">
+              <li
+                class="nav-item d-flex align-items-center px-4 sideBarItem"
+                [routerLink]="['admin']"
+                routerLinkActive="sideBarActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i class="fa-solid fa-house"></i>
+                <a class="nav-link d-flex align-items-center"> Dashboard </a>
+              </li>
+              <li
+                class="nav-item d-flex align-items-center px-4 sideBarItem"
+                [routerLink]="['admin/category']"
+                routerLinkActive="sideBarActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i class="fa-solid fa-th-large"></i>
+                <a class="nav-link d-flex align-items-center">Categories</a>
+              </li>
+              <li
+                class="nav-item d-flex align-items-center px-4 sideBarItem"
+                [routerLink]="['admin/grocery']"
+                routerLinkActive="sideBarActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i class="fa-solid fa-shopping-basket"></i>
+                <a class="nav-link d-flex align-items-center">Products </a>
+              </li>
+              <li
+                class="nav-item d-flex align-items-center px-4 sideBarItem"
+                [routerLink]="['admin/user']"
+                routerLinkActive="sideBarActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i class="fa-solid fa-user"></i>
+                <a class="nav-link d-flex align-items-center">Users</a>
+              </li>
+              <li
+                class="nav-item d-flex align-items-center px-4 sideBarItem"
+                [routerLink]="['admin/order']"
+                routerLinkActive="sideBarActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <a class="nav-link d-flex align-items-center">Orders </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <main class="col-10 px-4">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+    <div *ngIf="!isAdmin">
+      <div class="row">
+        <header class="navbar sticky-top bg-primary p-1 shadow">
+          <p class="text-white">
+            Free Delivery: Take advantage of our time to save event
+          </p>
+
+          <button
+            class="btn btn-success bg-black text-white"
+            routerLink="/grocery"
+          >
+            Buy Now
+          </button>
+
+          <!-- <a class="navbar-brand px-3 text-white" routerLink="#">Profile</a> -->
+        </header>
+
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand m-1" href="#">
+              <img
+                src="//eme-3.myshopify.com/cdn/shop/files/logo_1_300x300.png?v=1662980587"
+                alt=""
+                height="80vh"
+                width="120vw"
+                class="d-inline-block align-text-top"
+              />
+            </a>
+            <a class="navbar-brand px-3 text-black" routerLink="/">Home</a>
+            <div class="dropdown">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Departments
+              </button>
+              <ul class="dropdown-menu text-white">
+                <li>
+                  <a class="dropdown-item" routerLink="/grocery">Grocery</a>
+                </li>
+                <li *ngIf="!isAdmin">
+                  <a class="dropdown-item" routerLink="/cart">Shopping Cart</a>
+                </li>
+                <li><a class="dropdown-item" routerLink="/order">Order</a></li>
+              </ul>
+            </div>
+            <div
+              class="navbar-nav px-4 text-white"
+              *ngIf="!isAdmin"
+              routerLink="/cart"
+              role="button"
+            >
+              <i class="fa fa-cart-shopping text-black"></i>
+            </div>
+            <div
+              class="navbar-nav px-4 text-white"
+              routerLink="/userProfile"
+              role="button"
+            >
+              <i class="fa fa-user text-black"></i>
+            </div>
+
+            <div
+              class="navbar-nav px-4 text-white"
+              (click)="logout()"
+              role="button"
+            >
+              <i class="fa-solid fa-solid fa-right-from-bracket text-black"></i>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 

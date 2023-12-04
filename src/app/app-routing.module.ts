@@ -13,6 +13,7 @@ import { AdminCategoryComponent } from './component/admin/category/category.comp
 import { AdminUserComponent } from './component/admin/user/user.component';
 import { AdminorderComponent } from './component/admin/order/order.component';
 import { AdminGroceryComponent } from './component/admin/grocery/grocery.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -21,14 +22,13 @@ const routes: Routes = [
   { path: 'grocery', component: GroceriesComponent },
   { path: 'cart', component: CartComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'userProfile', component: UserProfileComponent },
   {
     path: 'admin/user',
     component: AdminUserComponent,
     canActivate: [authGuard],
   },
-  { path: 'admin',
-    component: AdminHomeComponent, 
-    canActivate: [authGuard] },
+  { path: 'admin', component: AdminHomeComponent, canActivate: [authGuard] },
   {
     path: 'admin/category',
     component: AdminCategoryComponent,
@@ -44,8 +44,6 @@ const routes: Routes = [
     component: AdminorderComponent,
     canActivate: [authGuard],
   },
- 
- 
 ];
 
 @NgModule({

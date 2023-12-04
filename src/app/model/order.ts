@@ -4,9 +4,16 @@ export interface Order {
   id: number;
   userId?: number;
   title: string;
-  username: string;
-  addressList: Address[];
-  orderStatus: string;
-  price?:number;
+  total:number;
+  username: String;
+  addressList?: Address[];
+  orderStatus?: string;
   description?:string;
+  orderedGroceryList: {
+    id?: number;
+    title: String;
+    description?: string;
+    price: number;
+    count: number;
+  }[];
 }

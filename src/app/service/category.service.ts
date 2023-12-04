@@ -6,7 +6,7 @@ import { urlEndpoint } from '../utils/constant';
 import { Category } from '../model/category';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
   constructor(private http: HttpClient) {}
