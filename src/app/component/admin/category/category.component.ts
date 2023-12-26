@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
 
@@ -10,7 +9,6 @@ import { CategoryService } from 'src/app/service/category.service';
 })
 export class AdminCategoryComponent implements OnInit {
   error: string = '';
-  emitterValue = false;
   id: number = 0;
   title: string = '';
   btn: string = 'Add';
@@ -34,8 +32,6 @@ export class AdminCategoryComponent implements OnInit {
 
   onSubmit(form: any) {
     if (this.editId == 0) {
-      //console.log('add');
-
       this.categoryService.postCategory({ title: this.title }).subscribe({
         next: (response: any) => {
           this.categories = response.data;
@@ -47,8 +43,6 @@ export class AdminCategoryComponent implements OnInit {
         },
       });
     } else {
-      //console.log('edit');
-
       let newCategory = { id: this.id, title: this.title };
       this.categoryService.putCategory(newCategory).subscribe({
         next: (response: any) => {

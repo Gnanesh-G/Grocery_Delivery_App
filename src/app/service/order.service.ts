@@ -14,23 +14,26 @@ export class OrderService {
     return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/admin/order/all`);
   }
 
-  createOrder(
-    userId: number,
-    groceryId: number,
-    addressId: number
-  ): Observable<Order[]> {
+  getUsersOrder(userId: number): Observable<any> {
+    return this.http.get<any>(`${urlEndpoint.baseUrl}/order/${userId}`);
+  }
+
+  createOrder(userId: number, addressId: number): Observable<Order[]> {
     let orderdata = {
       userId: userId,
-      groceryId: groceryId,
       addressId: addressId,
     };
     return this.http.post<Order[]>(`${urlEndpoint.baseUrl}/order`, orderdata);
   }
 
-  setStatus(body: any): Observable<AppResponse> {
-    return this.http.post<AppResponse>(
-      `${urlEndpoint.baseUrl}/admin/orders/status`,
-      body
+  setStatus(orderId: number, statusId: number): Observable<AppResponse> {
+    const setStatus = {
+      orderId: orderId,
+      statusId: statusId,
+    };
+    return this.http.put<AppResponse>(
+      `${urlEndpoint.baseUrl}/admin/order/status`,
+      setStatus
     );
   }
 }

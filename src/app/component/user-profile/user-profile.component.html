@@ -10,6 +10,8 @@
         ><span class="text-black-50"></span><span>{{ role }}</span>
       </div>
     </div>
+    <!-- <form  #FormSubmit="ngForm"
+    (ngSubmit)="onSubmit(FormSubmit.value)"> -->
     <div class="col-md-5 border-right">
       <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -23,6 +25,8 @@
               type="text"
               class="form-control"
               placeholder="enter address"
+              [(ngModel)]="address"
+
               value=""
             />
           </div>
@@ -32,6 +36,8 @@
               type="text"
               class="form-control"
               placeholder="country"
+              [(ngModel)]="city"
+
               value=""
             />
           </div>
@@ -42,6 +48,8 @@
               class="form-control"
               value=""
               placeholder="state"
+              [(ngModel)]="pinCode"
+
             />
           </div>
         </div>
@@ -49,13 +57,14 @@
         <div class="mt-5 text-center">
           <button
             class="btn btn-danger profile-button w-100 text-black"
-            type="button"
+            type="submit"
           >
             Save Profile
           </button>
         </div>
       </div>
     </div>
+  
     <div class="col-md-4" *ngFor="let detail of profileDetails">
       <div class="p-3 py-5">
         <div class="col-12">
@@ -70,7 +79,14 @@
             <div>
               <p>Pincode:{{ detail.pinCode }}</p>
             </div>
-            <!-- <div><span><button class="btn btn-success me-3">Edit</button></span><span><button class="btn btn-danger">Delete</button></span></div> -->
+            <div>
+              <span><button class="btn btn-success me-3">Edit</button></span
+              ><span
+                ><button class="btn btn-danger" (click)="delete(detail.id!)">
+                  Delete
+                </button></span
+              >
+            </div>
           </div>
         </div>
       </div>

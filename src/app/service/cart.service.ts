@@ -10,29 +10,26 @@ import { Grocery } from '../model/grocery';
   providedIn: 'root',
 })
 export class CartService {
-  itemCount: number = 1;
   constructor(private http: HttpClient) {}
+  itemCount: number = 1;
+
+  cartCountUpdate(increamentCount: Cart): Observable<any> {
+    return this.http.post<any>(`${urlEndpoint.baseUrl}/cart`, increamentCount);
+  }
 
   getCart(userId: number): Observable<any> {
     return this.http.get<any>(`${urlEndpoint.baseUrl}/cart/${userId}`);
-  }
-  // addToCart(body:any): Observable<AppResponse> {
-  //   return this.http.post<AppResponse>(`${urlEndpoint.baseUrl}/cart`,body);
-  // }
-
-  addItemToCart(item: any, userId: number): Observable<any> {
-    return this.http.post<any>(`${urlEndpoint.baseUrl}/cart`, item);
-  }
-  deleteCartItem(cartId: number): Observable<any> {
-    return this.http.delete<any>(`${urlEndpoint.baseUrl}/cart/${cartId}`);
   }
 
   updateCartItem(cart: Cart): Observable<any> {
     return this.http.put<any>(`${urlEndpoint.baseUrl}/cart/${cart.id}`, cart);
   }
 
-  addToCart(userId: number, productId: number): Observable<Cart[]> {
-    let count: number = 1;
+  addToCart(
+    userId: number,
+    productId: number,
+    count: number
+  ): Observable<Cart[]> {
     const requestData = {
       userId: userId,
       groceryId: productId,
@@ -48,17 +45,4 @@ export class CartService {
       `${urlEndpoint.baseUrl}/cart/${id}/${groceryId}`
     );
   }
-
-  updateProducts(newProducts: Grocery): Observable<AppResponse> {
-    return this.http.put<AppResponse>(
-      `${urlEndpoint.baseUrl}/admin/grocery`,
-      newProducts
-    );
-  }
-
-  // deleteCart(cartId: number): Observable<any> {
-  //   return this.http.delete<any>(
-  //     `${urlEndpoint.baseUrl}/cart/${cartId}}`
-  //   );
-  // }
 }

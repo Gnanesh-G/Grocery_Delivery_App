@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-order',
@@ -10,13 +11,15 @@ import { OrderService } from 'src/app/service/order.service';
 export class OrderComponent {
   error: string = "";
   orders:Order[]=[];
-  
-  constructor(private orderService: OrderService) {}
+  userId = this.storageService.getLoggedInUser().id;
 
-  ngOnInit(): void {
-    this.orderService.getAllOrders().subscribe({
+  constructor(private orderService: OrderService,private storageService:StorageService) {}
+
+  ngOnInit(userId:number): void {
+    this.orderService.getUsersOrder(this.userId).subscribe({
       next: (response: any) => {
         this.orders = response.data;
+        console.log(this.orders,"work");
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
@@ -25,4 +28,5 @@ export class OrderComponent {
     });
 
   }
+  
 }

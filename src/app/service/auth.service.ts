@@ -13,10 +13,6 @@ import { Register } from '../model/register';
   providedIn: 'root',
 })
 export class AuthService {
-  // public storageService: BehaviorSubject<string | null> = new BehaviorSubject<
-  //   string | null
-  // >(null);
-
   private isAdminSubject = new BehaviorSubject<boolean>(false);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
 

@@ -2,13 +2,13 @@
   <div class="row d-flex justify-content-between align-items-center mb-3">
     <h2 class="mt-5 col-10 text-black">Grocery List:</h2>
     <button
-      type="button"
+      type="button text-white"
       class="mt-4 col-auto btn btn-success"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       data-bs-whatever="@mdo"
     >
-      Add a Grocery
+      + Grocery
     </button>
   </div>
   <table class="table table-bordered table-hover">
@@ -47,7 +47,7 @@
             data-bs-whatever="@mdo"
             (click)="onEdit(grocery.id!)"
           >
-            Edit</button
+            <i class="fa fa-pen-to-square"></i> Edit</button
           ><button class="btn btn-danger me-2" (click)="onDelete(grocery.id)">
             Delete
           </button>
@@ -115,7 +115,6 @@
               name="price"
               [(ngModel)]="price"
             />
-            <!-- You can choose the appropriate input type for the price (text, number, etc.) -->
           </div>
           <div class="mb-3">
             <label for="image-upload" class="col-form-label">Image:</label>
@@ -129,7 +128,6 @@
               [(ngModel)]="photo"
               (change)="onFileChange($event)"
             />
-            <!-- You can use the 'accept' attribute to specify that only image files are allowed -->
           </div>
         </form>
       </div>

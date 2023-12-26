@@ -25,12 +25,8 @@ export class AdminorderComponent implements OnInit {
     });
   }
 
-  setStatus(id: number): void {
-    let statusReq = {
-      orderId: id,
-      statusId: this.status,
-    };
-    this.orderService.setStatus(statusReq).subscribe({
+  onStatusChange(order: Order) {
+    this.orderService.setStatus(order.id, order.orderStatus!).subscribe({
       next: (res: any) => {
         console.log(res);
       },

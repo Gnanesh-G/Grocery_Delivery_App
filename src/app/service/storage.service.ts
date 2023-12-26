@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AppUser } from '../model/appUser';
 import { Cart } from '../model/cart';
 import { Order } from '../model/order';
+import { Address } from '../model/address';
+import { Profile } from '../model/profile';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +59,16 @@ export class StorageService {
 
   setOrder(order: Order[]): void {
     localStorage.setItem('orders', JSON.stringify(order));
+  }
+
+   //set addressdetails
+   public setAddress(address:Profile): void {
+    localStorage.setItem('address', JSON.stringify(address));
+  }
+  public getAddress(): Order {
+    return JSON.parse(localStorage.getItem('address') || '{}');
+  }
+  public removeAddress():void{
+    localStorage.removeItem('address');
   }
 }

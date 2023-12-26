@@ -1,0 +1,27 @@
+/* @media order {
+    body > *:not(table) {
+      display: none !important;
+    }
+  } */
+
+ 
+  
+
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    /* Display only the elements you want to print */
+    #tableToPrint,
+    #tableToPrint * {
+      visibility: visible;
+    }
+    /* Optionally style your table for printing */
+    #tableToPrint {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  

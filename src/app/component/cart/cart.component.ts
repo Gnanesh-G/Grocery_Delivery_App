@@ -16,10 +16,10 @@ export class CartComponent implements OnInit {
   cartItem: Cart[] = this.storageService.getCart()!;
   orders: Order[] = [];
   addressId: number = 1;
-
-  userId: any;
   error: string = '';
   username: String = '';
+  userId = this.storageService.getLoggedInUser().id;
+  totalValue: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -27,41 +27,18 @@ export class CartComponent implements OnInit {
     private orderService: OrderService,
     private router: Router
   ) {}
-
   ngOnInit(): void {
-    let loggedInUser = this.storageService.getLoggedInUser();
-    let userId = loggedInUser.id;
-    console.log(userId, 'userid detail');
-
-    this.cartService.getCart(userId).subscribe({
+    this.cartService.getCart(this.userId).subscribe({
       next: (carts: any) => {
         let cartDetails: Cart[] = carts.data;
         this.carts = cartDetails;
-        console.log(carts, 'cart details');
-      },
-    });
-  }
-  addCartItemToCart(item: any, userId: number): void {
-    //let userId = this.storageService.getLoggedInUser().id;
-    //let  userId = loggedInUser.id;
-    this.userId = this.storageService.getLoggedInUser().id;
-
-    this.cartService.addItemToCart(item, userId).subscribe({
-      next: () => {
-        this.cartService.getCart(userId).subscribe({
-          next: (carts: any) => {
-            let cartDetails: Cart[] = carts.data;
-            this.carts = cartDetails;
-          },
-        });
+        this.calculateTotalValue();
       },
     });
   }
 
-  onDelete(id: number, groceryId: number): void {
-    console.log(id, groceryId);
-
-    this.cartService.deleteCart(id, groceryId).subscribe({
+  onDelete(id: number | undefined, groceryId: number | undefined): void {
+    this.cartService.deleteCart(id!, groceryId!).subscribe({
       next: (cart: Cart[]) => {
         this.carts = cart;
         this.ngOnInit();
@@ -72,43 +49,74 @@ export class CartComponent implements OnInit {
     });
   }
 
-  checkOut() {
+  checkOut(): Order[] {
+    for (let item of this.carts) {
+      let newOrder: Order = {
+        id: 0,
+        username: this.storageService.getLoggedInUser().username || '',
+        groceryList: [
+          {
+            id: item.grocery?.id || 0,
+            title: item.grocery?.title || '',
+            description: item.grocery?.description || '',
+            price: item.grocery?.price || 0,
+            count: item.count || 0,
+          },
+        ],
+      };
+      this.orders.push(newOrder);
+
+      this.orderService
+        .createOrder(this.storageService.getLoggedInUser().id, this.addressId)
+        .subscribe({
+          next: (response: Order[]) => {
+            console.log('response', response);
+          },
+          complete: () => console.log('orderCreated'),
+          error: () => console.log('error'),
+        });
+    }
+    this.storageService.setOrder(this.orders);
     this.router.navigate(['/order'], { replaceUrl: true });
-    // console.log('cart', this.carts);
+    return this.orders;
+  }
 
-    // for (let item of this.carts) {
-    //   this.orders.push({
-    //     id: 0,
-    //     total: item.Total,
-    //     username: this.storageService.getLoggedInUser().username,
-    //     orderedGroceryList: {
-    //       id: item.id,
-    //       title: item.title,
-    //       description:item.description,
-    //       price: item.price,
-    //       count: item.count,
-    //     },
-    //   });
+  increamentCount(cart: Cart) {
+    if (cart.grocery && cart.count !== null && cart.count >= 1) {
+      {
+        cart.count += 1;
+        let increaseCount = {
+          userId: this.userId,
+          groceryId: cart.grocery.id,
+          count: cart.count,
+        };
+        this.cartService
+          .cartCountUpdate(increaseCount)
+          .subscribe((response) => console.log(response));
+      }
+    }
+  }
 
-    //   console.log('order', this.orders);
+  decrementCount(cart: Cart) {
+    if (cart.grocery && cart.count !== null && cart.count > 1) {
+      {
+        cart.count -= 1;
+        let decreaseCount = {
+          userId: this.userId,
+          groceryId: cart.grocery.id,
+          count: cart.count,
+        };
+        this.cartService
+          .cartCountUpdate(decreaseCount)
+          .subscribe((response) => console.log(response));
+      }
+    }
+  }
 
-    //   this.orderService
-    //     .createOrder(this.storageService.getLoggedInUser().id, item.id, this.addressId)
-    //     .subscribe({
-    //       next: (response: Order[]) => {
-    //         console.log('response', response);
-    //         this.orders = response;
-    //       },
-    //       complete: () => console.log('orderCreated'),
-    //       error: () => console.log('error'),
-    //     });
-    // }
-
-    // this.storageService.setOrder(this.orders);
-    // // Move the navigation code here after the loop finishes
-    // this.router.navigate(['/order'], { replaceUrl: true });
-
-    // // Return statement should be placed before the navigation code as code written after return statement won't execute
-    // return this.orders;
+  calculateTotalValue(): void {
+    this.totalValue = this.carts.reduce(
+      (acc, cart) => acc + cart.count * cart.price!,
+      0
+    );
   }
 }

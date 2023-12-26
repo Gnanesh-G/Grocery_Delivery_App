@@ -10,7 +10,6 @@ import { GroceryService } from 'src/app/service/grocery.service';
 })
 export class AdminGroceryComponent implements OnInit {
   error: string = '';
-  //INITIAL_GROCERY: Grocery = { id: 0, title: "",description:"",price:0 };
   id: number = 0;
   photo: string = '';
   title: String = '';
@@ -20,7 +19,7 @@ export class AdminGroceryComponent implements OnInit {
   editId: number = 0;
   groceries: Grocery[] = [];
   file: string = '';
-  //groceryModel: Grocery = this.INITIAL_GROCERY;
+
   constructor(private groceryService: GroceryService) {}
 
   ngOnInit(): void {
@@ -65,7 +64,7 @@ export class AdminGroceryComponent implements OnInit {
       formData.append('categoryId', '1');
       formData.append('price', productForm.value.price.toString());
       this.groceryService.putGroceries(formData).subscribe({
-        next: (response: any) => {
+        next: () => {
           this.title = '';
           this.description = '';
           this.price = 0;
@@ -94,7 +93,6 @@ export class AdminGroceryComponent implements OnInit {
   }
 
   onDelete(id: number | undefined) {
-    console.log(id);
     if (id !== undefined) {
       this.groceryService.deleteGroceries(id).subscribe({
         next: (response: any) => {

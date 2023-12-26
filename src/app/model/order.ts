@@ -3,14 +3,14 @@ import { Address } from './address';
 export interface Order {
   id: number;
   userId?: number;
-  title: string;
-  total:number;
+  title?: string;
+  total?:number;
   username: String;
   addressList?: Address[];
-  orderStatus?: string;
+  orderStatus?:number;
   description?:string;
-  orderedGroceryList: {
-    id?: number;
+  groceryList: {
+    id: number;
     title: String;
     description?: string;
     price: number;

@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
 import { urlEndpoint } from '../../utils/constant';
 import { StorageService } from '../storage.service';
 
@@ -14,10 +13,7 @@ import { StorageService } from '../storage.service';
   providedIn: 'root',
 })
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(
-    private authService: AuthService,
-    private storageService: StorageService
-  ) {}
+  constructor(private storageService: StorageService) {}
 
   intercept(
     request: HttpRequest<any>,

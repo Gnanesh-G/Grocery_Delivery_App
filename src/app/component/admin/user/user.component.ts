@@ -28,7 +28,6 @@ export class AdminUserComponent implements OnInit {
         if (userDetails.length > 0) {
           this.userDetails = userDetails;
           this.userDetail = userDetails[0];
-          console.log('check');
         }
       },
       error: (err) => {

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { urlEndpoint } from '../utils/constant';
 import { AppResponse } from '../model/appResponse';
-import { Grocery } from '../model/grocery';
 
 @Injectable({
   providedIn: 'root',
@@ -36,12 +35,4 @@ export class GroceryService {
       `${urlEndpoint.baseUrl}/admin/grocery/${id}`
     );
   }
-
-  // getUserCart(id:number): Observable<AppResponse> {
-  //   return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/cart/get/${id}`);
-  // }
-
-  // removeFromCart(userId:number,id:number): Observable<AppResponse>{
-  //   return this.http.delete<AppResponse>(`${urlEndpoint.baseUrl}/cart/remove/${userId}/${id}`);
-  // }
 }
