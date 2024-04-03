@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
 import { Cart } from 'src/app/model/cart';
 import { Order } from 'src/app/model/order';
 import { CartService } from 'src/app/service/cart.service';
@@ -12,6 +13,9 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  options: AnimationOptions = {
+    path: '/assets/cartlottie.json',
+  };
   carts: Cart[] = [];
   cartItem: Cart[] = this.storageService.getCart()!;
   orders: Order[] = [];
@@ -32,6 +36,8 @@ export class CartComponent implements OnInit {
       next: (carts: any) => {
         let cartDetails: Cart[] = carts.data;
         this.carts = cartDetails;
+        console.log(this.carts);
+        
         this.calculateTotalValue();
       },
     });
@@ -81,36 +87,40 @@ export class CartComponent implements OnInit {
     return this.orders;
   }
 
-  increamentCount(cart: Cart) {
-    if (cart.grocery && cart.count !== null && cart.count >= 1) {
-      {
-        cart.count += 1;
-        let increaseCount = {
-          userId: this.userId,
-          groceryId: cart.grocery.id,
-          count: cart.count,
-        };
-        this.cartService
-          .cartCountUpdate(increaseCount)
-          .subscribe((response) => console.log(response));
-      }
+  decrementCount(cartId: number, count: number, groceryId: number) {
+    console.log('CartId => ' + cartId);
+    console.log('count => ' + count);
+    console.log('groceryId => ' + groceryId);
+    if (count > 1) {
+      this.cartService
+        .cartCountUpdate(
+          this.storageService.getLoggedInUser().id,
+          groceryId,
+          count - 1
+        )
+        .subscribe({
+          next: (response: any) => {
+            this.carts = response.data;
+          },
+        });
     }
   }
 
-  decrementCount(cart: Cart) {
-    if (cart.grocery && cart.count !== null && cart.count > 1) {
-      {
-        cart.count -= 1;
-        let decreaseCount = {
-          userId: this.userId,
-          groceryId: cart.grocery.id,
-          count: cart.count,
-        };
-        this.cartService
-          .cartCountUpdate(decreaseCount)
-          .subscribe((response) => console.log(response));
-      }
-    }
+  increamentCount(cartId: number, count: number, groceryId: number) {
+    console.log('CartId => ' + cartId);
+    console.log('count => ' + count);
+    console.log('groceryId => ' + groceryId);
+    this.cartService
+      .cartCountUpdate(
+        this.storageService.getLoggedInUser().id,
+        groceryId,
+        count + 1
+      )
+      .subscribe({
+        next: (response: any) => {
+          this.carts = response.data;
+        },
+      });
   }
 
   calculateTotalValue(): void {

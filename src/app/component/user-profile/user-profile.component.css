@@ -34,3 +34,12 @@ body {
   cursor: pointer;
   border: solid 1px rgb(34, 212, 79);
 }
+
+.scrollable{
+  height: 350px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+label.labels {
+  font-size: 18px; /* Adjust the font size as per your preference */
+}

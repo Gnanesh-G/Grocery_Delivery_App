@@ -6,3 +6,15 @@
     position: relative;
     transition-duration: .5s;
   }
+
+  .btn-success {
+    color: var(--secondary-100);
+    background: var(--green-500);
+    border: none;
+  }
+  
+  button.btn-close {
+    color: red !important;
+    background-color: red !important;
+    border: none !important;
+  }

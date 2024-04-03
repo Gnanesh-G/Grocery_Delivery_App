@@ -1,4 +1,70 @@
-<div>
+<div *ngIf="!isLoggedIn">
+  <header class="navbar sticky-top bg-primary p-1 shadow">
+    <p class="text-white">Groceries Makes Your Day!!!</p>
+
+    <button class="btn btn-success bg-black text-white" routerLink="/login" id="loginbutton">
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      Login
+    </button>
+  </header>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Welcome to  Grocery Store
+        </h5>
+        <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        
+      ></button>
+      </div>
+
+      <div class="modal-body">
+        
+          <p>
+            Click
+            <button
+              routerLink="/login"
+              type="button"
+              class="btn-xs rounded btn-success text-white"
+              data-bs-dismiss="modal"
+            >
+              Login
+            </button>
+            to proceed
+          </p>
+          <p>
+            Don't have an account
+            <button
+              routerLink="/register"
+              type="button"
+              class="btn-xs rounded btn-success text-white"
+              data-bs-dismiss="modal"
+            >
+              Register
+            </button>
+            here
+          </p>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoggedIn">
   <div
     id="carouselExample"
     class="carousel slide"
@@ -51,167 +117,310 @@
     </button>
   </div>
 
+  <!-- <li class="nav-item list-unstyled" *ngIf="!isAdmin">
+    <div
+      class="search-container"
+      [ngClass]="{ 'show-search': isSearchVisible }"
+    >
+      <input
+        type="text"
+        class="container mt-1 rad d-flex-end rounded-pill"
+        [(ngModel)]="searchTerm"
+        placeholder="Search here...!!!"
+        (input)="filterGroceries()"
+      />
+    </div>
+  </li> -->
+
   <section style="background-color: #eee">
     <div class="container py-5">
       <h4 class="text-center mb-5"><strong>Products</strong></h4>
 
-      <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img src="/assets/img/banner/slide2.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Tomato</span
-                    >
-                  </h5>
+      <div class="row justify-content-between">
+        <div
+          *ngFor="
+            let grocery of groceries.slice(
+              (currentPage - 1) * itemsPerPage,
+              currentPage * itemsPerPage
+            )
+          "
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@fat"
+          class="col-lg-4 col-md-6 mb-4"
+        >
+          <div class="card">
+            <div
+              class="bg-image hover-zoom ripple ripple-surface ripple-surface-light mt-3"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                src="{{
+                  'http://localhost:8080/api/admin/grocery/downloadFile/' +
+                    grocery.id
+                }}"
+                width="300px"
+                height="200px"
+                class="mx-4"
+              />
+              <a href="#!">
+                <div class="mask">
+                  <div
+                    class="d-flex justify-content-start align-items-end h-100"
+                  ></div>
                 </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img src="/assets/img/banner/slide7.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Strawberry</span
-                    >
-                  </h5>
+                <div class="hover-overlay">
+                  <div
+                    class="mask"
+                    style="background-color: rgba(251, 251, 251, 0.15)"
+                  ></div>
                 </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img src="/assets/img/banner/slide17.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Apple</span
-                    >
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4">
-          <div
-            class="bg-image hover-zoom ripple shadow-1-strong rounded ripple-surface"
-          >
-            <img src="/assets/img/banner/slide15.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Guava</span
-                    >
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img src="/assets/img/banner/slide16.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Watermelon</span
-                    >
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img src="/assets/img/banner/slide18.jpg" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.3)">
-                <div
-                  class="d-flex justify-content-center align-items-start h-100"
-                >
-                  <h5>
-                    <span class="badge bg-light pt-2 ms-3 mt-3 text-dark"
-                      >Mango</span
-                    >
-                  </h5>
-                </div>
-              </div>
-              <div class="hover-overlay">
-                <div
-                  class="mask"
-                  style="background-color: rgba(253, 253, 253, 0.15)"
-                ></div>
-              </div>
-            </a>
+              </a>
+            </div>
+            <div class="card-body text-center">
+              
+                <h5 class="card-title mb-3">{{ grocery.title }}</h5>
+              
+                <p>{{ grocery.description }}</p>
+              <h6 class="mb-3">₹ {{ grocery.price }}</h6>
+              <button class="btn btn-primary">Add To Cart</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <ul
+    class="pagination justify-content-center mt-3 custom-pagination"
+    *ngIf="groceries.length > 0"
+  >
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="currentPage = currentPage - 1">Previous</a>
+    </li>
+    <li
+      class="page-item text-danger"
+      *ngFor="let page of getPageNumbers()"
+      [class.active]="currentPage === page"
+    >
+      <a class="page-link" (click)="currentPage = page">{{ page }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+      <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+    </li>
+  </ul>
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <div class="row mt-3">
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Gstore
+            </h6>
+            <p>
+              "Fresh essentials, fast arrival. Bringing market goodness home.
+              Quick delivery, superior quality. Elevate your meals with our
+              premium selection delivered promptly!"
+            </p>
+          </div>
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+            <p>
+              <a routerLink="/grocery" class="text-reset">Vegetables</a>
+            </p>
+            <p>
+              <a routerLink="/grocery" class="text-reset">Fruits</a>
+            </p>
+            <p>
+              <a routerLink="/grocery" class="text-reset">Diary</a>
+            </p>
+            <p>
+              <a routerLink="/grocery" class="text-reset">Juices</a>
+            </p>
+          </div>
+
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+            <p>
+              <a routerLink="/grocery" class="text-reset">Grocery</a>
+            </p>
+            <p>
+              <a routerLink="/cart" class="text-reset">Cart</a>
+            </p>
+            <p>
+              <a routerLink="/order" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a routerLink="/userProfile" class="text-reset">Profile</a>
+            </p>
+          </div>
+
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i>12.T-Nagar,Chennai-67</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              info@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+      © 2023 Copyright:
+      <a class="text-reset fw-bold" href="">GStore.com</a>
+    </div>
+  </footer>
+</div>
+<div *ngIf="isLoggedIn">
+  <div
+    id="carouselExample"
+    class="carousel slide"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="/assets/img/banner/slide1.jpg"
+          class="d-block w-100"
+          alt="..."
+          style="height: 700px; width: 1000px"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="/assets/img/banner/slide10.jpg"
+          class="d-block w-100"
+          alt="..."
+          style="height: 700px; width: 1000px"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="/assets/img/banner/slide6.webp"
+          class="d-block w-100"
+          alt="..."
+          style="height: 700px; width: 1000px"
+        />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- <li class="nav-item list-unstyled" >
+    <div
+      class="search-container"
+      [ngClass]="{ 'show-search': isSearchVisible }"
+    >
+      <input
+        type="text"
+        class="container mt-1 rad d-flex-end rounded-pill"
+        [(ngModel)]="searchTerm"
+        placeholder="Search here...!!!"
+        (input)="filterGroceries()"
+      />
+    </div>
+  </li>
+
+  <div class="d-flex row">
+    <div
+      class="col-lg-3 col-md-6"
+      *ngFor="let grocery of filteredGroceries"
+    >
+        <div class="card">
+          <div
+            class="bg-image hover-zoom ripple ripple-surface ripple-surface-light mt-3"
+            data-mdb-ripple-color="light"
+          >
+            <img
+              src="{{
+                'http://localhost:8080/api/admin/grocery/downloadFile/' +
+                  grocery.id
+              }}"
+              width="230px"
+              height="200px"
+              class="mx-4"
+            />
+            <a href="#!">
+              <div class="mask">
+                <div
+                  class="d-flex justify-content-start align-items-end h-100"
+                ></div>
+              </div>
+              <div class="hover-overlay">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.15)"
+                ></div>
+              </div>
+            </a>
+          </div>
+          <div class="card-body text-center">
+            
+              <h5 class="card-title mb-3">{{ grocery.title }}</h5>
+            
+              <p>{{ grocery.description }}</p>
+            <h6 class="mb-3">₹ {{ grocery.price }}</h6>
+            <button class="btn btn-primary" >Add To Cart</button>
+          </div>
+        </div>
+    </div>
+  </div> -->
+
+
+  <app-groceries></app-groceries>
+
   <footer class="text-center text-lg-start bg-body-tertiary text-muted">
     <section
       class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"

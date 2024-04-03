@@ -1,7 +1,10 @@
 <section class="text-center" style="background-color: #eee">
   <h4 class="mt-4 mb-5"><strong>Products</strong></h4>
   <div class="d-flex row">
-    <div *ngFor="let grocery of groceries" class="col-lg-4 col-md-6 mb-4">
+    <div *ngFor="let grocery of groceries.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage
+    )" class="col-lg-4 col-md-6 mb-4">
       <div class="card">
         <div
           class="bg-image hover-zoom ripple ripple-surface ripple-surface-light mt-3"
@@ -30,18 +33,39 @@
           </a>
         </div>
         <div class="card-body">
-          <a href="" class="text-reset">
+         
             <h5 class="card-title mb-3">{{ grocery.title }}</h5>
-          </a>
-          <a href="" class="text-reset">
+          
+          
             <p>{{ grocery.description }}</p>
-          </a>
-          <h6 class="mb-3">{{ grocery.price }}</h6>
+        
+          <h6 class="mb-3">₹ {{ grocery.price }}</h6>
           <button class="btn btn-primary" (click)="onAddToCart(grocery.id)">
             Add To Cart
           </button>
         </div>
       </div>
+      
     </div>
+    <ul
+     class="pagination justify-content-center mt-3 custom-pagination"
+     *ngIf="groceries.length > 0"
+   >
+     <li class="page-item" [class.disabled]="currentPage === 1">
+       <a class="page-link" (click)="currentPage = currentPage - 1"
+         >Previous</a
+       >
+     </li>
+     <li
+       class="page-item text-danger"
+       *ngFor="let page of getPageNumbers()"
+       [class.active]="currentPage === page"
+     >
+       <a class="page-link" (click)="currentPage = page">{{ page }}</a>
+     </li>
+     <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+       <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+     </li>
+   </ul>
   </div>
 </section>

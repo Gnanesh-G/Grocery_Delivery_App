@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,14 @@ export function playerFactory() {
     ReactiveFormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      closeButton: true,
+      timeOut: 2000,
+      maxOpened: 5,
+      autoDismiss: true,
+
+    }),
   ],
   providers: [
     {

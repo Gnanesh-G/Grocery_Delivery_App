@@ -15,6 +15,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
+        <!-- <td><img
+          src="{{
+            'http://localhost:8080/api/admin/grocery/downloadFile/' +
+              grocery.id
+          }}"
+          alt=""
+          width="50px"
+          height="50px"
+        /></td> -->
         <th scope="row" class="text-center">{{ order.id }}</th>
         <td class="text-center">{{ order.userId }}</td>
         <td>{{ order.username }}</td>
@@ -24,7 +33,7 @@
           <select
             [(ngModel)]="order.orderStatus"
             (change)="onStatusChange(order)"
-          >
+          > 
             <option value="1">Pending</option>
             <option value="2">Confirmed</option>
             <option value="3">Out For Delivery</option>

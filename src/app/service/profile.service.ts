@@ -16,18 +16,14 @@ export class ProfileService {
     return this.http.get<any>(`${urlEndpoint.baseUrl}/user/${userId}`);
   }
 
-  getUserDetails(userId: number): Observable<AppResponse> {
-    return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/user/${userId}`);
-  }
-
-  postAddress(details: Profile, userId: number): Observable<Profile> {
+  postAddress(details: Profile, userId: number): Observable<AppResponse> {
     const profile = {
       userId: userId,
-      address:details.address,
+      address: details.address,
       city: details.city,
       pinCode: details.pinCode,
     };
-    return this.http.post<Profile>(
+    return this.http.post<AppResponse>(
       `${urlEndpoint.baseUrl}/user/address`,
       profile
     );

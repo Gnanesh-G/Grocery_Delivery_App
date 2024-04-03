@@ -1,5 +1,5 @@
 export interface Cart {
-  id?: number;
+  id: number;
   userId: number;
   groceryId: number;
   cartId?: number;
@@ -14,5 +14,4 @@ export interface Cart {
     photo: string | null;
     createdAt: string;
   };
-
 }

@@ -5,6 +5,8 @@ import { AppResponse } from 'src/app/model/appResponse';
 import { Login } from 'src/app/model/login';
 import { AppUser } from 'src/app/model/appUser';
 import { AuthService } from 'src/app/service/auth.service';
+import { ToasterService } from 'src/app/service/toaster.service';
+
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,10 @@ export class LoginComponent {
   password: String = '';
   error: String = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private toastr: ToasterService
+  ) {}
 
   login(_loginForm: Form): void {
     let login: Login = {
@@ -29,6 +34,7 @@ export class LoginComponent {
     };
     this.authService.login(login).subscribe({
       next: (response: AppResponse) => {
+        this.toastr.info('Logged In Successfully!!!');
         let user: AppUser = response.data;
         this.authService.setLoggedIn(user);
       },

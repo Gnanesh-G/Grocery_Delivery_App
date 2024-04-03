@@ -1,24 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
 
 :root {
-  --primary-50: #f7fee7; /* White */
-  --primary-100: #f1f1f1; /* Lighter Shade of White */
-  --primary-300: #c0c0c0; /* Light Gray */
-  --primary-500: #388e3c; /* Slightly Thicker Green */
-  --primary-600: hsl(123, 46%, 34%); /* Darker Green */
-  --primary-700: #d0fdd3; /* Even Darker Green */
-  --primary-900: #124116; /* Darkest Green */
-  --secondary-100: #a7b90d; /* Off-White/Greenish */
-  --secondary-500: #757575; /* Gray */
-  --secondary-900: #212121; /* Dark Gray */
-  --red-100: #ffcdd2; /* Light Red */
-  --red-300: #e57373; /* Red */
-  --red-500: #f44336; /* Dark Red */
-  --red-700: #d32f2f; /* Darker Red */
-  --green-light: #c8e6c9; /* New Light Green */
-  --green-500: #388e3c; /* Slightly Thicker Green */
-  --green-medium: #7cb342; /* Medium Green */
-  --green-dark: #1b5e20; /* Dark Green */
+  --primary-50: #f7fee7; 
+  --primary-100: #f1f1f1; 
+  --primary-300: #c0c0c0; 
+  --primary-500: #388e3c; 
+  --primary-600: hsl(123, 46%, 34%); 
+  --primary-700: #d0fdd3; 
+  --primary-900: #124116; 
+  --secondary-100: #a7b90d;
+  --secondary-500: #757575;
+  --secondary-900: #212121;
+  --red-100: #ffcdd2; 
+  --red-300: #e57373; 
+  --red-500: #f44336; 
+  --red-700: #d32f2f; 
+  --green-light: #c8e6c9; 
+  --green-500: #388e3c; 
+  --green-medium: #7cb342; 
+  --green-dark: #1b5e20;
   --border-radius: 4px;
 }
 
@@ -68,7 +68,7 @@ body {
   border: none;
 }
 
-.btn-success {
+/* .btn-success {
   color: var(--secondary-100);
   background: var(--green-500);
   border: none;
@@ -78,7 +78,7 @@ body {
   color: var(--secondary-100);
   background: var(--green-700);
   border: none;
-}
+} */
 
 /* form */
 .form-control,
@@ -219,4 +219,8 @@ body {
 }
 .navbar-nav .nav-link {
   color: white;
+}
+
+.toast-top-right{
+  margin-top: 10px;
 }

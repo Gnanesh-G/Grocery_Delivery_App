@@ -15,14 +15,14 @@ import { AdminorderComponent } from './component/admin/order/order.component';
 import { AdminGroceryComponent } from './component/admin/grocery/grocery.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [authGuard] },
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'grocery', component: GroceriesComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'order', component: OrderComponent },
-  { path: 'userProfile', component: UserProfileComponent },
+  { path: 'grocery', component: GroceriesComponent, canActivate: [authGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
+  { path: 'order', component: OrderComponent, canActivate: [authGuard] },
+  { path: 'userProfile', component: UserProfileComponent, canActivate: [authGuard] },
   {
     path: 'admin/user',
     component: AdminUserComponent,

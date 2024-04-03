@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Order } from 'src/app/model/order';
+import { Profile } from 'src/app/model/profile';
 import { OrderService } from 'src/app/service/order.service';
+import { ProfileService } from 'src/app/service/profile.service';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
@@ -12,18 +14,22 @@ export class OrderComponent {
   error: string = "";
   orders:Order[]=[];
   userId = this.storageService.getLoggedInUser().id;
+  profileDetails: Profile[] = [];
 
-  constructor(private orderService: OrderService,private storageService:StorageService) {}
+  constructor(private orderService: OrderService,private storageService:StorageService,
+    private profileService: ProfileService) {}
 
   ngOnInit(userId:number): void {
     this.orderService.getUsersOrder(this.userId).subscribe({
       next: (response: any) => {
         this.orders = response.data;
-        console.log(this.orders,"work");
       },
-      error: (err) => {
-        let message: string = err?.error?.error?.message;
-        this.error = message.includes(",") ? message.split(",")[0] : message;
+      
+    });
+
+    this.profileService.getAddress(this.userId).subscribe({
+      next: (response: any) => {
+        this.profileDetails = response.data.addressList;
       },
     });
 

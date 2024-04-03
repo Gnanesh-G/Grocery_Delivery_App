@@ -13,16 +13,28 @@ export class CartService {
   constructor(private http: HttpClient) {}
   itemCount: number = 1;
 
-  cartCountUpdate(increamentCount: Cart): Observable<any> {
-    return this.http.post<any>(`${urlEndpoint.baseUrl}/cart`, increamentCount);
+  // cartCountUpdate(increamentCount: Cart): Observable<any> {
+  //   return this.http.post<any>(`${urlEndpoint.baseUrl}/cart`, increamentCount);
+  // }
+
+  cartCountUpdate(
+    userId: number,
+    groceryId: number,
+    count: number): Observable<Cart[]> {
+    const requestData = {
+      userId: userId,
+      groceryId: groceryId,
+      count: count,
+    
+    };
+    console.log(requestData);
+
+    return this.http.post<Cart[]>(`${urlEndpoint.baseUrl}/cart`, requestData);
   }
+    
 
   getCart(userId: number): Observable<any> {
     return this.http.get<any>(`${urlEndpoint.baseUrl}/cart/${userId}`);
-  }
-
-  updateCartItem(cart: Cart): Observable<any> {
-    return this.http.put<any>(`${urlEndpoint.baseUrl}/cart/${cart.id}`, cart);
   }
 
   addToCart(

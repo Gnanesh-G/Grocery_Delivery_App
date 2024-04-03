@@ -61,14 +61,13 @@ export class StorageService {
     localStorage.setItem('orders', JSON.stringify(order));
   }
 
-   //set addressdetails
-   public setAddress(address:Profile): void {
+  public setAddress(address: Profile): void {
     localStorage.setItem('address', JSON.stringify(address));
   }
   public getAddress(): Order {
     return JSON.parse(localStorage.getItem('address') || '{}');
   }
-  public removeAddress():void{
+  public removeAddress(): void {
     localStorage.removeItem('address');
   }
 }

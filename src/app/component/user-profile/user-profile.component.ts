@@ -14,9 +14,9 @@ export class UserProfileComponent implements OnInit {
   name: String = '';
   role: String = '';
   error: string = '';
-  address:string='';
-  city:string='';
-  pinCode:string='';
+  address: string = '';
+  city: string = '';
+  pinCode: string = '';
   profileDetails: Profile[] = [];
   userDetails: UserDetail[] = [];
   userId = this.storageService.getLoggedInUser().id;
@@ -32,27 +32,33 @@ export class UserProfileComponent implements OnInit {
     this.role = this.storageService.getLoggedInUser().role;
 
     this.profileService.getAddress(this.userId).subscribe({
-      next: (profileDetails: any) => {
-        let newProfile: Profile[] = profileDetails.data.addressList;
-        this.profileDetails = newProfile;
+      next: (response: any) => {
+        this.profileDetails = response.data.addressList;
       },
     });
   }
 
-  // onSubmit(details: {
-  //   userId: number;
-  //   address: string;
-  //   city: string;
-  //   pinCode: number;
-  // }) {
-  //   console.log(details);
-  //   this.profileService
-  //     .postAddress(details, this.storageService.getLoggedInUser().id)
-  //     .subscribe((response) => {
-  //       console.log(response);
-  //       this.storageService.setAddress(response);
-  //     });
-  // }
+  onSubmit(details: { address: string; city: string; pinCode: number }) {
+    this.profileService
+      .postAddress(details, this.storageService.getLoggedInUser().id)
+      .subscribe({
+        next: (response:any) => {
+          console.log(response.data, 'Gnanesh');
+          this.profileDetails = response.data.addressList;
+          this.address = '';
+          this.city = '';
+          this.pinCode = '';
+        },
+        error: (err) => {
+          let message: string = err?.error?.error?.message;
+          this.error =
+            message != null && message.includes(',')
+              ? message.split(',')[0]
+              : message;
+        },
+      });
+      this.ngOnInit();
+  }
 
   delete(id: number): void {
     this.profileService.deleteAddress(id).subscribe({

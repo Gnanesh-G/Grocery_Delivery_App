@@ -1,4 +1,21 @@
-<section class="h-100" style="background-color: #eee">
+<div class="row">
+  <div class="col"></div>
+  <div *ngIf="carts.length === 0" class="col">
+    <h2>Oops!!! Your cart is Empty</h2>
+    <div style="margin-top: -45px">
+      <ng-lottie [options]="options"></ng-lottie>
+    </div>
+    <button style="margin-left:80px;" type="button" class="btn btn-light btn-lg" routerLink="/grocery">
+      Continue shopping
+    </button>
+  </div>
+  <div class="col"></div>
+</div>
+<section
+  *ngIf="carts.length !== 0"
+  class="h-100"
+  style="background-color: #eee"
+>
   <div class="container h-100 py-2">
     <div class="row d-flex justify-content-center h-100">
       <div class="col-10">
@@ -9,15 +26,25 @@
         <div class="card rounded-3 mb-4" *ngFor="let cart of carts">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                  src="{{
+                    'http://localhost:8080/api/admin/grocery/downloadFile/' +
+                      cart.grocery?.id
+                  }}"
+                  class="img-fluid rounded-3"
+                  alt="Cotton T-shirt"
+                />
+              </div>
               <p class="mb-0">{{ cart.id }}</p>
               <p class="mb-0">{{ cart.grocery?.title }}</p>
               <p class="mb-0">Rs.{{ cart.grocery?.price! * cart.count }}</p>
               <div class="d-flex align-items-center">
-                <button class="btn btn-sm" (click)="decrementCount(cart)">
+                <button class="btn btn-sm" (click)="decrementCount(cart.id,cart.count,cart.grocery?.id!)">
                   <i class="fa fa-minus"></i>
                 </button>
                 <span class="mx-2 my-0">{{ cart.count }}</span>
-                <button class="btn btn-sm" (click)="increamentCount(cart)">
+                <button class="btn btn-sm" (click)="increamentCount(cart.id,cart.count,cart.grocery?.id!)">
                   <i class="fa fa-plus"></i>
                 </button>
               </div>
@@ -51,7 +78,7 @@
     </div>
   </div>
 </section>
-<div
+<!-- <div
   class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary"
 >
   <div class="text-white mb-3 mb-md-0">
@@ -72,4 +99,4 @@
       <i class="fab fa-linkedin-in"></i>
     </a>
   </div>
-</div>
+</div> -->
